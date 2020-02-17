@@ -1,0 +1,47 @@
+<%= render :partial => 'action_menu' %>
+
+<h2><%= product_header(@product) %></h2>
+
+<div class="<%= @product.css_classes %> details">
+  <% if @prev_product_id || @next_product_id %>
+    <div class="next-prev-links contextual">
+      <%= link_to_if @prev_product_id,
+                     "\xc2\xab #{l(:label_previous)}",
+                     (@prev_product_id ? product_path(@prev_product_id) : nil),
+                     :title => "##{@prev_product_id}",
+                     :accesskey => accesskey(:previous) %> |
+      <% if @product_position && @product_count %>
+        <span class="position">
+          <%= link_to_if @query_path,
+                         l(:label_item_position, :position => @product_position, :count => @product_count),
+                         @query_path %>
+        </span> |
+      <% end %>
+      <%= link_to_if @next_product_id,
+                     "#{l(:label_next)} \xc2\xbb",
+                     (@next_product_id ? product_path(@next_product_id) : nil),
+                     :title => "##{@next_product_id}",
+                     :accesskey => accesskey(:next) %>
+    </div>
+  <% end %>
+
+  <div class="attributes">
+    <%= show_attribute l('field_product_name'), @product.product_name %>
+    <%= show_attribute l('field_cost'), @product.cost %>
+    <%= show_attribute l('field_quantity'), @product.quantity %>
+    <%= show_attribute l('field_production_date'), format_date(@product.production_date) %>
+    <%= show_attribute l('field_issue'), (@product.issue ? link_to_issue(@product.issue) : "-")  %>  
+  </div>
+</div>
+
+<%= render partial: 'action_menu' %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'products/sidebar' %>
+<% end %>
+
+<% content_for :header_tags do %>
+    <%= robot_exclusion_tag %>
+    <%= javascript_include_tag 'products', :plugin => 'redmine_warehouse' %>
+    <%= stylesheet_link_tag 'products', :plugin => 'redmine_warehouse' %>
+<% end %>

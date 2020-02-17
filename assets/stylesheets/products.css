@@ -1,0 +1,39 @@
+body.controller-products .query-totals {
+	margin-top:-2.3em;
+}
+
+table.list td.product_name{
+    text-align: left;
+}
+
+div.product.details {
+    background: #ffffdd;
+    padding: 6px;
+    margin-bottom: 6px;
+    border: 1px solid #d7d7d7;
+    border-radius: 3px;
+}
+
+div.product .attributes .attribute {
+    padding-left: 180px;
+    clear: left;
+    min-height: 1.8em;
+}
+
+div.product .attributes .attribute .label {
+    width: 170px;
+    margin-left: -180px;
+    font-weight: bold;
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div.product .attribute .value {
+    overflow: auto;
+    text-overflow: ellipsis;
+}
+
+table.issue-products {
+    border: none !important;
+}

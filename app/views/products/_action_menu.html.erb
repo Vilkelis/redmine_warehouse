@@ -1,0 +1,4 @@
+<div class="contextual">
+  <%= link_to l(:button_edit), edit_product_path(@product), class: 'icon icon-edit', title: l(:button_edit), :accesskey => accesskey(:edit) %>
+  <%= link_to l(:button_delete), product_path(@product, back_url: project_products_path(@project)), data: {confirm: l(:text_product_destroy_confirmation, product: @product.product_name)}, method: :delete, title: l(:button_delete), class: 'icon icon-del' %>
+</div>

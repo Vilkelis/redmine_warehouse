@@ -1,0 +1,18 @@
+# English strings go here for Rails i18n
+en:
+  permission_view_products: View products
+  permission_create_product: Create new product
+  permission_edit_product: Edit product  
+  permission_destroy_product: Destroy product
+  project_module_warehouse: Warehouse
+  warehouse_tab_title: Warehouse  
+  field_product_name: Product name
+  field_cost: Cost
+  field_quantity: Quantiry
+  field_production_date: Production date
+  field_issue: Issue  
+  label_glad_products: Warehouse
+  label_product_new: Create product
+  label_product_edit: Edit product
+  label_product_plural: Warehouse products
+  text_product_destroy_confirmation: Are you sure you want to delete the product "%{product}"? 

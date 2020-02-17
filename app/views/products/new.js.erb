@@ -1,0 +1,4 @@
+//replaceProductFormWith('<%= escape_javascript(render :partial => 'form') %>');
+
+$('#product_issue').html('<%= escape_javascript link_to_issue(@product.issue) if @product.issue.present? %>');
+

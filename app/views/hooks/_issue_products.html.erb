@@ -1,0 +1,32 @@
+<hr />
+<div id="issue_products">
+
+	<div class="contextual">
+		<%= link_to(l(:button_add), new_project_product_path(@issue.project, :product => {issue_id: @issue.id} , :back_url => issue_path(@issue))) %>
+	</div>
+	<p><strong><%=l(:label_product_plural)%></strong></p>
+
+  <table class="list products odd-even issue-products">
+    <tbody>
+    <% @issue.products.each do |product| -%>
+      <tr id="product-<%= product.id %>" class="<%= product.css_classes %>">  
+				<%= content_tag :td, class: "product_name" do %>
+      	<%= link_to product.product_name, product_path(product) %> 
+      	<% end %>
+        
+        <td class="buttons">
+          <%= link_to l(:button_edit), edit_product_path(product), class: 'icon-only icon-edit', title: l(:button_edit) %>
+          <%= link_to l(:button_delete), product_path(product, back_url: issue_path(@issue)), data: {confirm: l(:text_product_destroy_confirmation, product: product.product_name)}, method: :delete, title: l(:button_delete), class: 'icon-only icon-del' %>
+        </td>
+
+      </tr>
+    <% end -%>
+    </tbody>
+  </table>
+
+</div>
+
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'products', :plugin => 'redmine_warehouse' %>
+<% end %>
+

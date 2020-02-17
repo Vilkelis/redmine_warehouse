@@ -1,0 +1,60 @@
+<%= labelled_fields_for :product, @product do |f| %>
+  <%= hidden_field_tag 'form_update_triggered_by', '' %>
+  <%= hidden_field_tag 'back_url', params[:back_url], :id => nil if params[:back_url].present? %>
+
+  <% if @product.safe_attribute? 'product_name' %>
+  <p><%= f.text_field :product_name, :size => 80, :maxlength => 255, :required => true %></p>
+  <% end %>
+
+  <% if @product.safe_attribute? 'cost' %>
+  <p><%= f.number_field :cost, :min => 0, :required => false %></p>
+  <% end %>
+
+  <% if @product.safe_attribute? 'quantity' %>
+  <p><%= f.number_field :quantity, :min => 0, :required => false %></p>
+  <% end %>
+
+  <% if @product.safe_attribute? 'production_date' %>
+  <p id="production_date_area">
+    <%= f.date_field(:production_date, :size => 10, :required => false) %>
+    <%= calendar_for('product_production_date') %>
+  </p>
+  <% end %>
+
+  <% if @product.safe_attribute? 'issue_id' %>
+  <p id="issue"><%= f.text_field :issue_id, :size => 10, :required => false %>
+    <span id="product_issue">
+      <%=  link_to_issue(@product.issue) if @product.issue.try(:visible?) %>
+    </span>
+  </p>
+ 
+      <%= javascript_tag do %>
+      $(document).ready(function(){
+        $('#product_issue_id').change(function(){
+          $.ajax({
+            url: '<%= escape_javascript(@product.new_record? ? new_project_product_path(@project, :format => 'js') : edit_product_path(:format => 'js')) %>',
+            type: 'post',
+            data: $(this).closest('form').serialize()
+          });
+        });
+      });
+
+      observeAutocompleteField('product_issue_id', 
+      '<%= escape_javascript(auto_complete_issues_path(:project_id => @project, :scope => 'all')) %>',
+        {
+          select: function(event, ui) {
+            $('#product_issue').text('');
+            $('#product_issue_id').val(ui.item.value).change();
+          }
+        }
+      )
+    <% end %>
+
+  <% end %>
+<% end %>
+
+
+ 
+
+
+

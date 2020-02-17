@@ -1,0 +1,18 @@
+# Russian strings go here for Rails i18n
+ru:
+  permission_view_products: Просмотр товаров
+  permission_create_product: Создание нового товара
+  permission_edit_product: Редактирование товара
+  permission_destroy_product: Удаление товара
+  project_module_warehouse: Склад
+  warehouse_tab_title: Склад
+  field_product_name: Наименование товара
+  field_cost: Стоимость
+  field_quantity: Количество
+  field_production_date: Дата производства
+  field_issue: Задача
+  label_glad_products: Склад
+  label_product_new: Новый товар
+  label_product_edit: Редактировать товар
+  label_product_plural: Товары на складе
+  text_product_destroy_confirmation: Удалить товар "%{product}"?  
